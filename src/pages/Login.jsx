@@ -38,7 +38,7 @@ const navigate = useNavigate();
       const response = await axios.post("https://projectmangerbackend.onrender.com/api/login", {
         email,
         password,
-      });
+      },{withCredentials:true});
 
       if (response.data.success) {
         sessionStorage.setItem('accessToken', response.data.accessToken);
