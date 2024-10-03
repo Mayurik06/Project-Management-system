@@ -34,7 +34,10 @@ const options = {
     { value: "Strategy", label: "Strategy" },
     { value: "Finance", label: "Finance" },
     { value: "Quality", label: "Quality" },
-    { value: "Maintenance", label: "Stores" },
+    { value: "Maintenance", label: "Maintenance" },
+    { value: "Stores", label: "Stores" },
+    { value: "Human Resources", label: "Human Resources" },
+
 
   ],
   location: [
@@ -88,8 +91,7 @@ console.log(projectData);
     try {
       // Send the project data to your API
       const response = await axios.post("http://127.0.0.1:3000/api/createProject", projectData);
-      console.log("Project created successfully:",response.data);
-      // Reset form after successful submission
+  
       setTheme("");
       setFormData({
         reason: "",
@@ -101,8 +103,10 @@ console.log(projectData);
         location: "",
         startDate: "",
         endDate: "",
+        status:"Registered"
       });
       setThemeError(""); // Reset theme error
+      setDateError(""); // Reset date error
     } catch (error) {
       console.error("Error creating project:", error.response.data);
       // Handle errors appropriately
@@ -118,9 +122,11 @@ console.log(projectData);
   };
 
   return (
+    <div className="absolute md:w-[93%] w-full p-4 md:h-screen pb-20 md:pb-4">
+    <div className="rounded-[10px] bg-white shadow-custom relative md:h-[100%]">
     <form
       onSubmit={handleSubmit}
-      className="p-6 bg-white rounded-[10px] shadow-custom relative h-screen"
+      className="p-6  sm:mb-[58px]"
     >
       <div className="flex flex-col gap-1">
         <label
@@ -153,6 +159,7 @@ console.log(projectData);
               <select
                 name={key}
                 id={key}
+                value={formData[key]} 
                 onChange={handleInputChange}
                 className="w-full text-[16px] leading-[22px] text-[#3F3F3F] outline-none"
               >
@@ -179,6 +186,7 @@ console.log(projectData);
               type="date"
               id="startDate"
               name="startDate"
+              value={formData.startDate}
               onChange={handleInputChange}
               className="w-full text-[16px] leading-[22px] text-[#3F3F3F] outline-none"
             />
@@ -197,6 +205,7 @@ console.log(projectData);
               type="date"
               id="endDate"
               name="endDate"
+              value={formData.endDate}
               onChange={handleInputChange}
               className="w-full text-[16px] leading-[22px] text-[#3F3F3F] outline-none"
             />
@@ -216,6 +225,7 @@ console.log(projectData);
             <select
               name="location"
               id="location"
+              value={formData.location}
               onChange={handleInputChange}
               className="w-full text-[16px] leading-[22px] text-[#3F3F3F] outline-none"
             >
@@ -235,12 +245,14 @@ console.log(projectData);
         </div>
       </div>
 
-      <div className="text-center mt-4 md:absolute md:top-0 md:right-8">
-        <button className="bg-[#025AAB] rounded-[18px] text-[16px] leading-[22px] text-white px-8 py-[7px]">
+      <div className="text-center mt-4 md:absolute md:top-0 md:right-6">
+        <button className="bg-[#025AAB] rounded-[18px] text-[16px] leading-[22px] text-white px-8 py-[7px] w-full">
           Save Project
         </button>
       </div>
     </form>
+    </div>
+    </div>
   );
 }
 

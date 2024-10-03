@@ -6,15 +6,27 @@ import Sidebar from "./Components/Sidebar";
 import Header from "./Components/Header";
 import CreateProject from "./pages/CreateProject";
 import ProjectListing from "./pages/ProjectListing";
+import { AuthProvider } from "./pages/AuthProvider";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="*" element={<MainContent />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          {/* All protected routes */}
+          <Route
+            path="*"
+            element={
+              <ProtectedRoute>
+                <MainContent />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
@@ -45,7 +57,7 @@ function MainContent() {
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/createProject" element={<CreateProject />} />
-          <Route path="/projectListing" element={<ProjectListing/>}/>
+          <Route path="/projectListing" element={<ProjectListing />} />
         </Routes>
       </Sidebar>
     </div>
