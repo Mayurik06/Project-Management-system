@@ -9,7 +9,7 @@ const DepartmentWiseChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:3000/api/getProjectStatus'); // Fetch from your backend API
+        const response = await axios.get('https://projectmangerbackend.onrender.com/api/getProjectStatus'); // Fetch from your backend API
         setChartData(response.data);
       } catch (error) {
         console.error('Error fetching project stats:', error);
