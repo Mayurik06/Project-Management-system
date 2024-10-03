@@ -22,7 +22,7 @@ function Sidebar({ children }) {
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:3000/api/logout",
+        "https://projectmangerbackend.onrender.com/api/logout",
         {},
         { withCredentials: true }
       );

@@ -90,7 +90,7 @@ const newEndDate = new Date(formData.endDate);
 console.log(projectData);
     try {
       // Send the project data to your API
-      const response = await axios.post("http://127.0.0.1:3000/api/createProject", projectData);
+      const response = await axios.post("https://projectmangerbackend.onrender.com/api/createProject", projectData);
   
       setTheme("");
       setFormData({

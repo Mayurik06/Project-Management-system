@@ -17,7 +17,7 @@ function Dashboard() {
   const fetchProjectData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/getDetailProject"
+        "https://projectmangerbackend.onrender.com/api/getDetailProject"
       );
       setProjectData(response.data);
     } catch (error) {

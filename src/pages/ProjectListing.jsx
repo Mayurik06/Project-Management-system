@@ -33,7 +33,7 @@ function ProjectListing() {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/getProjects");
+      const response = await axios.get("https://projectmangerbackend.onrender.com/api/getProjects");
       setProjects(response.data.projects);
     } catch (error) {
       console.error("Error fetching projects:", error);
@@ -98,7 +98,7 @@ function ProjectListing() {
   // Handle status change
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.patch(`http://127.0.0.1:3000/api/updateStatus/${id}`, {
+      await axios.patch(`https://projectmangerbackend.onrender.com/api/updateStatus/${id}`, {
         status: newStatus,
       });
       fetchProjects();
