@@ -6,8 +6,8 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("new@gmail.com");
+  const [password, setPassword] = useState("new123");
   const [errorMessage, setErrorMessage] = useState([]);
   const [toggle,setToggle]=useState(false);
   const [isMobile, setIsMobile] = useState();
@@ -92,7 +92,7 @@ const navigate = useNavigate();
                 </label>
 
                 <div className={`w-full lg:w-[337px] border ${errorMessage.email?'border-red-500':'border-[#979797]'} rounded-[4px] p-2 h-[48px] flex flex-col items-center justify-center`}>
-                  <input type="text" className="w-full outline-none bg-transparent" onChange={(e) => setEmail(e.target.value)}/>
+                  <input type="text" className="w-full outline-none bg-transparent" value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <p className="h-[14px] text-[12px] text-red-500">{errorMessage.email}</p>
               </div>
@@ -106,7 +106,7 @@ const navigate = useNavigate();
                 </label>
 
                 <div className={`w-full lg:w-[337px] border ${errorMessage.password?'border-red-500':'border-[#979797]'}  rounded-[4px] p-2 flex items-center justify-center h-[48px]`}>
-                  <input type={`${toggle?'text':'password'}`} className="w-full outline-none bg-transparent" onChange={(e) => setPassword(e.target.value)} />
+                  <input type={`${toggle?'text':'password'}`} className="w-full outline-none bg-transparent" value={password} onChange={(e) => setPassword(e.target.value)} />
                   <div onClick={()=>setToggle(!toggle)} type="buttom">
                   {
                     toggle ? <RemoveRedEyeOutlinedIcon className="text-[#5A5B5B] p-0"/>: <img src="/hide-password.svg" alt="" />
